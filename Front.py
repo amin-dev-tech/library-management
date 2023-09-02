@@ -3,7 +3,7 @@ from tkinter import ttk
 from Back import *
 
 root = Tk()
-root.title("مدیریت کتابخانه")
+root.title(" مدیریت کتابخانه")
 
 frm = ttk.Frame(root, padding=10)
 frm.grid()
