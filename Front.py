@@ -1,22 +1,23 @@
 from tkinter import *
-from tkinter import ttk
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 from Back import *
 
 root = Tk()
-root.title(" مدیریت کتابخانه")
+root.title("Library Management")
 
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 
-ttk.Label(frm, text="عنوان").grid(column=0, row=0)
+ttk.Label(frm, text="Title").grid(column=0, row=0)
 book_name = ttk.Entry(frm)
 book_name.grid(column=1, row=0)
 
-ttk.Label(frm, text="نویسنده").grid(column=2, row=0)
+ttk.Label(frm, text="Author").grid(column=2, row=0)
 author = ttk.Entry(frm)
 author.grid(column=3, row=0)
 
-ttk.Label(frm, text="سال انتشار").grid(column=0, row=1)
+ttk.Label(frm, text="Release Year").grid(column=0, row=1)
 year = ttk.Entry(frm)
 year.grid(column=1, row=1)
 
@@ -27,7 +28,7 @@ isbn.grid(column=3, row=1)
 scrollbr = Scrollbar(frm, orient="vertical")
 scrollbr.grid(column=2, row=2, rowspan=5, sticky=N + S + W)
 
-result = Text(frm, height=15, width=45, yscrollcommand=scrollbr.set)
+result = Text(frm, height=10, width=30, yscrollcommand=scrollbr.set)
 result.grid(column=0, row=2, columnspan=2, rowspan=5)
 
 scrollbr.config(command=result.yview)
@@ -35,6 +36,7 @@ scrollbr.config(command=result.yview)
 
 def showAll():
     result.insert(END, selectAll())
+    print(selectAll())
 
 
 def insert():
@@ -49,11 +51,21 @@ def deleteBook():
     delete(isbn.get())
 
 
-ttk.Button(frm, text="مشاهده همه", command=showAll).grid(column=3, row=2)
-ttk.Button(frm, text="جست و جوی کتاب", command=searchBook).grid(column=3, row=3)
-ttk.Button(frm, text="اضافه کردن کتاب", command=insert).grid(column=3, row=4)
-ttk.Button(frm, text="حذف کردن", command=deleteBook).grid(column=3, row=5)
-ttk.Button(frm, text="بستن", command=root.destroy).grid(column=3, row=6)
+ttk.Button(frm, text="All Records", command=showAll, cursor="hand2").grid(
+    column=3, row=2
+)
+ttk.Button(frm, text="Search For Books", command=searchBook, cursor="hand2").grid(
+    column=3, row=3
+)
+ttk.Button(frm, text="Add New book", command=insert, cursor="hand2").grid(
+    column=3, row=4
+)
+ttk.Button(frm, text="Delete A Book", command=deleteBook, cursor="hand2").grid(
+    column=3, row=5
+)
+ttk.Button(frm, text="Quite", command=root.destroy, cursor="hand2").grid(
+    column=3, row=6
+)
 
 
 # ttk.Label(frm, text="Library Application").grid(column=0, row=0)

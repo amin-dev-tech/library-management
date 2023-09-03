@@ -28,7 +28,13 @@ else:
 
 
 def selectAll():
-    result = pd.read_sql("SELECT * FROM Library", con=cnx)
+    result = pd.read_sql("SELECT * FROM Library", con=cnx, index_col=None)
+    result.set_index(
+        [
+            pd.Index([i + 1 for i in range(len(result))]),
+        ],
+        inplace=True,
+    )
     return result
 
 
